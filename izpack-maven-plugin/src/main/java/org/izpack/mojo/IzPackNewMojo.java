@@ -50,7 +50,7 @@ import java.util.logging.Level;
  * @author Anthonin Bonnefoy
  */
 @Mojo( name = "izpack", defaultPhase = LifecyclePhase.PACKAGE, threadSafe = true,
-       requiresDependencyResolution = ResolutionScope.TEST)
+       requiresDependencyResolution = ResolutionScope.TEST, requiresProject = true)
 public class IzPackNewMojo extends AbstractMojo
 {
     /**
@@ -62,7 +62,7 @@ public class IzPackNewMojo extends AbstractMojo
     /**
      * The Maven Project Object
      */
-    @Parameter( property = "project", required = true, readonly = true, defaultValue = "${project}" )
+    @Parameter( property = "project", required = true, readonly = false, defaultValue = "${project}" )
     private MavenProject project;
 
     /**
@@ -154,7 +154,7 @@ public class IzPackNewMojo extends AbstractMojo
      * as artifact if a classifier is specified.
      * This has no effect if no classifier was specified.
      */
-    @Parameter( defaultValue = "true")
+    @Parameter( defaultValue = "false")
     private boolean enableAttachArtifact;
 
     private PropertyManager propertyManager;
@@ -189,11 +189,9 @@ public class IzPackNewMojo extends AbstractMojo
         {
             throw new MojoExecutionException( "Failure", e );
         }
-
-        if (enableAttachArtifact)
-        {
-            projectHelper.attachArtifact(project, "jar", classifier, jarFile);
-        }
+        Artifact artifact = project.getArtifact();
+        artifact.setFile(jarFile);
+        artifact.setArtifactId(finalName);
     }
 
     private File getJarFile()
