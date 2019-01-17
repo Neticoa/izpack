@@ -493,14 +493,15 @@ public class ShortcutPanelLogic implements CleanupClient
         if (!installData.isInstallSuccess())
         {
             // Shortcuts may have been deleted, but let's try to delete them once again
-            for (String file : files)
-            {
-                File fl = new File(file);
-                if (fl.exists())
-                {
-                    fl.delete();
+            if (files != null)
+            	for (String file : files)
+            	{
+            	    File fl = new File(file);
+            	    if (fl.exists())
+            	    {
+            	        fl.delete();
+            	    }
                 }
-            }
         }
     }
 
