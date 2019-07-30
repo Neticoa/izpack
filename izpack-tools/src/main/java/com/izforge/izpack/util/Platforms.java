@@ -41,6 +41,11 @@ public class Platforms
     public static Platform AIX = new Platform(Name.AIX);
 
     /**
+     * AIX platform.
+     */
+    public static Platform OS400 = new Platform(Name.OS400, "OS400", Arch.PPC);
+
+    /**
      * Debian Linux platform.
      */
     public static Platform DEBIAN_LINUX = new Platform(Name.DEBIAN_LINUX);
@@ -166,7 +171,7 @@ public class Platforms
     /**
      * Known platforms.
      */
-    public static Platform[] PLATFORMS = {AIX, DEBIAN_LINUX, FEDORA_LINUX, FREEBSD, HP_UX, LINUX, MAC, MAC_OSX,
+    public static Platform[] PLATFORMS = {AIX, OS400, DEBIAN_LINUX, FEDORA_LINUX, FREEBSD, HP_UX, LINUX, MAC, MAC_OSX,
             MANDRAKE_LINUX, MANDRIVA_LINUX, OS_2, RED_HAT_LINUX, SUNOS, SUNOS_X86,
             SUNOS_SPARC, SUSE_LINUX, UBUNTU_LINUX, UNIX, WINDOWS, WINDOWS_XP,
             WINDOWS_2003, WINDOWS_VISTA, WINDOWS_7, WINDOWS_8, WINDOWS_10};
@@ -375,6 +380,10 @@ public class Platforms
         else if (StringTool.startsWithIgnoreCase(name, OsVersionConstants.AIX))
         {
             result = Name.AIX;
+        }
+        else if (StringTool.startsWithIgnoreCase(name, OsVersionConstants.OS400))
+        {
+            result = Name.OS400;
         }
         else if (StringTool.startsWithIgnoreCase(name, OsVersionConstants.SUNOS)
                 || StringTool.startsWithIgnoreCase(name, OsVersionConstants.SOLARIS))

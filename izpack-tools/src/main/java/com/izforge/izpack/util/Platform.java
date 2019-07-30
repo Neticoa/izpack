@@ -59,6 +59,7 @@ public class Platform
         SUSE_LINUX(Name.LINUX),
         UBUNTU_LINUX(Name.LINUX),
         WINDOWS,
+        OS400(Name.LINUX),
         UNKNOWN;
 
         /**
@@ -134,7 +135,7 @@ public class Platform
     }
 
     /**
-     * The operating system architecture.
+     * The hardware architecture.
      */
     public enum Arch
     {
