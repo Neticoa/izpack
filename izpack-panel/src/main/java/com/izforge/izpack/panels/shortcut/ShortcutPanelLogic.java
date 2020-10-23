@@ -658,6 +658,9 @@ public class ShortcutPanelLogic implements CleanupClient
      */
     private String getGroupName()
     {
+        if (groupName == null) {
+            return suggestedProgramGroup;
+        }
         return groupName;
     }
 
@@ -1112,7 +1115,7 @@ public class ShortcutPanelLogic implements CleanupClient
         {
             try
             {
-                groupName = this.groupName + data.subgroup;
+                groupName = getGroupName() + data.subgroup;
                 shortcut.setUserType(userType);
                 shortcut.setLinkName(data.name);
                 shortcut.setLinkType(data.type);
@@ -1199,7 +1202,7 @@ public class ShortcutPanelLogic implements CleanupClient
         }
         if (OsVersion.IS_UNIX)
         {
-            writeXDGMenuFile(startMenuShortcuts, this.groupName, programGroupIconFile, programGroupComment);
+            writeXDGMenuFile(startMenuShortcuts, getGroupName(), programGroupIconFile, programGroupComment);
         }
         
         if (!shortcuts.isEmpty()) 
