@@ -86,7 +86,18 @@ public class ExistsCondition extends Condition
                 }
                 break;
 
-            default:
+            case DIR:
+                if (this.content != null)
+                {
+                    Variables variables = getInstallData().getVariables();
+                    File dir = new File(FilenameUtils.normalize(variables.replace(this.content)));
+                    if (dir.exists() && dir.isDirectory())
+                    {
+                        result = true;
+                    }
+                }
+                break;
+           default:
                 logger.warning("Illegal content type '" + contentType.getAttribute() + "' of ExistsCondition");
                 break;
         }
@@ -173,6 +184,13 @@ public class ExistsCondition extends Condition
                     vars.addAll(ValueUtils.parseUnresolvedVariableNames(this.content));
                 }
                 break;
+            case DIR:
+                if (this.content != null)
+                {
+                    // variables are resolved here
+                    vars.addAll(ValueUtils.parseUnresolvedVariableNames(this.content));
+                }
+                break;
             default: throw new CompilerException("Unimplemented contentType");
         }
         return vars;
@@ -180,7 +198,7 @@ public class ExistsCondition extends Condition
 
     public enum ContentType
     {
-        VARIABLE("variable"), FILE("file");
+        VARIABLE("variable"), FILE("file"), DIR("dir");
 
         private static Map<String, ContentType> lookup;
 
