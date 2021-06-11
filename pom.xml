@@ -32,14 +32,14 @@
 			<uniqueVersion>false</uniqueVersion>
 			<id>sonatype-nexus-staging</id>
 			<name>MIS Releases</name>
-			<url>http://private.neticoa.fr:50003/repository/mis-releases</url>
+			<url>https://nexus.metrixware.com/repository/mis-releases</url>
 			<layout>default</layout>
 		</repository>
 		<snapshotRepository>
 			<uniqueVersion>false</uniqueVersion>
 			<id>sonatype-nexus-snapshots</id>
 			<name>MIS Snapshots</name>
-			<url>http://private.neticoa.fr:50003/repository/mis-snapshots</url>
+			<url>https://nexus.metrixware.com/repository/mis-snapshots</url>
 			<layout>default</layout>
 		</snapshotRepository>
 	</distributionManagement>
@@ -535,7 +535,7 @@
         <extensions>true</extensions>
         <configuration>
           <serverId>sonatype-nexus-staging</serverId>
-          <nexusUrl>http://private.neticoa.fr:50003</nexusUrl>
+          <nexusUrl>https://nexus.metrixware.com</nexusUrl>
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
